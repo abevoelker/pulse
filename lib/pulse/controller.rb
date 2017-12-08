@@ -18,9 +18,9 @@ class PulseController < ActionController::Base
                         end
 
     if activerecord_okay
-      render :text => okay_response
+      render :html => okay_response
     else
-      render :text => error_response, :status => :internal_server_error
+      render :html => error_response, :status => :internal_server_error
     end
   end
 
@@ -74,10 +74,10 @@ class PulseController < ActionController::Base
   end
 
   def okay_response
-    "<html><body>OK  #{Time.now.utc.to_s(:db)}</body></html>"
+    "<html><body>OK  #{Time.now.utc.to_s(:db)}</body></html>".html_safe
   end
 
   def error_response
-    '<html><body>ERROR</body></html>'   
+    "<html><body>ERROR</body></html>".html_safe
   end
 end
